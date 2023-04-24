@@ -5,28 +5,45 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style x:Key="MeTextBox" TargetType="TextBox">
-            <Setter Property="Height" Value="20"></Setter> 
-            <Setter Property="Width" Value="100"></Setter>
-            <Setter Property="Margin" Value="5" > </Setter>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate >
+                        <Border x:Name="border" CornerRadius="7"
+        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="MyButton" TargetType="Button">
-            <Setter Property="BorderBrush" Value="Orange"></Setter>
-            <Setter Property="BorderThickness" Value="2"></Setter>
-            <Setter Property="Background" Value="White" ></Setter>
-            <Setter Property="Margin" Value="5" ></Setter>
+            <Setter Property="BorderBrush" Value="Orange"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="5" />
         </Style>
         <Style x:Key="Logo" TargetType="Image">
-            <Setter Property="Height" Value="60"></Setter>
-            <Setter Property="Width" Value="60"></Setter>
-            <Setter Property="Margin" Value="5" ></Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
-        <Style  x:Key="MeTextBlock" TargetType="TextBlock">
-            <Setter Property="Background" Value="Orange"></Setter>
-            <Setter Property="Height" Value="20"></Setter>
-            <Setter Property="Margin" Value="5" ></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-            <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        </Style>
+        
+        <!--<Style x:Key="MyDatePicker" TargetType="DatePicker">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate >
+                        <Border x:Name="border" CornerRadius="7"
+        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"  Background="White">
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+      
+      
     </Application.Resources>
+    
 </Application>

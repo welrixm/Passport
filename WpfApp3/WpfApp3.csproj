@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="DataPickerStl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +73,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MyPage\AutoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPage\GroupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -88,6 +96,9 @@
   <ItemGroup>
     <Compile Include="MyPage\AutoPage.xaml.cs">
       <DependentUpon>AutoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPage\GroupPage.xaml.cs">
+      <DependentUpon>GroupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyPage\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>

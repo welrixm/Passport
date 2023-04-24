@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="Li4noeBtn" Margin="5">
+            <Button x:Name="Li4noeBtn" Margin="5" Click="Li4noeBtn_Click">
                 <Button.Content>
                     <StackPanel>
                         <Image HorizontalAlignment="Center" Style="{StaticResource Logo}" Source="C:\Users\232001\source\repos\WpfApp3\WpfApp3\Images\e2b5789c-237d-4da1-a83a-0b8b34478ae2.jpg" ></Image>
@@ -18,7 +18,7 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Button x:Name="GroupBtn" Margin="5" >
+            <Button x:Name="GroupBtn" Margin="5" Click="GroupBtn_Click" >
                 <Button.Content>
                     <StackPanel>
                         <Image HorizontalAlignment="Center" Style="{StaticResource Logo}" Source="C:\Users\232001\source\repos\WpfApp3\WpfApp3\Images\e2b5789c-237d-4da1-a83a-0b8b34478ae2.jpg" ></Image>
