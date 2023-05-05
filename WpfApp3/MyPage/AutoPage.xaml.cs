@@ -34,7 +34,24 @@ namespace WpfApp3.MyPage
 
         private void AutoBtn_Click(object sender, RoutedEventArgs e)
         {
-            Navigation.NextPage(new Nav("", new HomePage()));
+            string login = LoginTb.Text.Trim();
+            string password = PasswordTb.Text.Trim();
+            if (login.Length> 0 && password.Length>0)
+            {
+                var user = BdConectn.db.Visitor.Where(x => x.Email == login && x.Password == password).FirstOrDefault();
+                if (user == null)
+                {
+                    MessageBox.Show("Такого пользователя нет");
+                }
+                Navigation.isAuth = true; 
+                Navigation.NextPage(new Nav("", new HomePage()));
+              
+            }
+            else
+            {
+                MessageBox.Show("Заполните поля");
+            }
+          //  var Userid= BdConectn.db
         }
     }
 }

@@ -11,8 +11,18 @@
             <RowDefinition Height="51*"/>
             <RowDefinition Height="368*"/>
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+            <Button Grid.Row="0" 
+               Content="Назад"  Style="{StaticResource MyButton}" Height="25"
+                x:Name="ExitBtn" Click="ExitBtn_Click"/>
+            <Button   Content="Выход"
+             x:Name="BackBtn"    Style="{StaticResource MyButton}" Height="25" Click="Button_Click"/>
+
+        </StackPanel>
+
         <Image Style="{StaticResource Logo}" Source="C:\Users\232001\source\repos\WpfApp3\WpfApp3\Images\e2b5789c-237d-4da1-a83a-0b8b34478ae2.jpg"></Image>
         <TextBlock Grid.Row="0" x:Name="Mytitle" HorizontalAlignment="Center" VerticalAlignment="Center">ssdfsdfs</TextBlock>
-        <Frame Grid.Row="1" x:Name="MyFrame"></Frame>
+        <Frame Grid.Row="1" x:Name="MyFrame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

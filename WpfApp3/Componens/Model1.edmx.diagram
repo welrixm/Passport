@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a32281e6529445d3b45b844680bdf857" Name="Diagram1">
+        <EntityTypeShape EntityType="prrrModel.Docimentation" Width="1.5" PointX="7.5" PointY="2.125" />
+        <EntityTypeShape EntityType="prrrModel.Employee" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="prrrModel.Pass" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="prrrModel.Subdivision" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="prrrModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="prrrModel.TheHost" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="prrrModel.VisitPurpose" Width="1.5" PointX="0.75" PointY="2.125" />
+        <AssociationConnector Association="prrrModel.FK_TheHost_Employee" />
+        <AssociationConnector Association="prrrModel.FK_Pass_VisitPurpose" />
+        <AssociationConnector Association="prrrModel.FK_TheHost_Subdivision" />
+        <EntityTypeShape EntityType="prrrModel.Visitor" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="prrrModel.FK_Docimentation_Visitor" />
+        <AssociationConnector Association="prrrModel.VisitorPass" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

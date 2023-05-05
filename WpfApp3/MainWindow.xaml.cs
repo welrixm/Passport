@@ -28,5 +28,17 @@ namespace WpfApp3
             Navigation.main = this;
             Navigation.NextPage(new Nav("Авторизация", new AutoPage()));
         }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+           Navigation.BackPage();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.isAuth = false;
+            Navigation.navs.Clear();
+            Navigation.NextPage(new Nav("Авторизация", new AutoPage()));
+        }
     }
 }

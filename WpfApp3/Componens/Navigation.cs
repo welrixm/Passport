@@ -11,6 +11,7 @@ namespace WpfApp3.Componens
     {
         public static List<Nav> navs = new List<Nav>();
         public static MainWindow main;
+        public static bool isAuth = false;
         public static void NextPage(Nav nav)
         {
             navs.Add(nav);
@@ -21,8 +22,15 @@ namespace WpfApp3.Componens
         {
             main.Mytitle.Text = nav.Title;
             main.MyFrame.Navigate(nav.Page);
+            main.ExitBtn.Visibility = isAuth == true ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+            main.BackBtn.Visibility = navs.Count > 1 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
 
-
+        }
+        public static void BackPage()
+        {
+            if (navs.Count > 1)
+                navs.Remove(navs[navs.Count - 1]);
+            Update(navs[navs.Count - 1]);
         }
     }
     class Nav
