@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VisitorId" Type="int" />
           <Property Name="Photo" Type="image" />
         </EntityType>
@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Patronimyc" Type="nvarchar" MaxLength="50" />
@@ -27,7 +27,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DesiredStartDate" Type="date" />
           <Property Name="DesiredEndDate" Type="date" />
           <Property Name="VisitPurposeId" Type="int" />
@@ -37,7 +37,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -49,14 +49,6 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="TheHost">
-          <Key>
-            <PropertyRef Name="SubdivisionId" />
-            <PropertyRef Name="EmployeeId" />
-          </Key>
-          <Property Name="SubdivisionId" Type="int" Nullable="false" />
-          <Property Name="EmployeeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Visitor">
           <Key>
@@ -78,17 +70,17 @@
         </EntityType>
         <EntityType Name="VisitorPass">
           <Key>
-            <PropertyRef Name="VisitorId" />
-            <PropertyRef Name="PassId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="VisitorId" Type="int" Nullable="false" />
+          <Property Name="VisitorId" Type="int" />
           <Property Name="PassId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="VisitPurpose">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Docimentation_Visitor">
@@ -139,30 +131,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TheHost_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="TheHost" Type="Self.TheHost" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TheHost">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TheHost_Subdivision">
-          <End Role="Subdivision" Type="Self.Subdivision" Multiplicity="1" />
-          <End Role="TheHost" Type="Self.TheHost" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Subdivision">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TheHost">
-              <PropertyRef Name="SubdivisionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_VisitorPass_Pass">
           <End Role="Pass" Type="Self.Pass" Multiplicity="1" />
           <End Role="VisitorPass" Type="Self.VisitorPass" Multiplicity="*" />
@@ -176,7 +144,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VisitorPass_Visitor">
-          <End Role="Visitor" Type="Self.Visitor" Multiplicity="1" />
+          <End Role="Visitor" Type="Self.Visitor" Multiplicity="0..1" />
           <End Role="VisitorPass" Type="Self.VisitorPass" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Visitor">
@@ -193,7 +161,6 @@
           <EntitySet Name="Pass" EntityType="Self.Pass" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subdivision" EntityType="Self.Subdivision" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TheHost" EntityType="Self.TheHost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visitor" EntityType="Self.Visitor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitorPass" EntityType="Self.VisitorPass" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitPurpose" EntityType="Self.VisitPurpose" Schema="dbo" store:Type="Tables" />
@@ -212,14 +179,6 @@
           <AssociationSet Name="FK_Pass_VisitPurpose" Association="Self.FK_Pass_VisitPurpose">
             <End Role="VisitPurpose" EntitySet="VisitPurpose" />
             <End Role="Pass" EntitySet="Pass" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TheHost_Employee" Association="Self.FK_TheHost_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="TheHost" EntitySet="TheHost" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TheHost_Subdivision" Association="Self.FK_TheHost_Subdivision">
-            <End Role="Subdivision" EntitySet="Subdivision" />
-            <End Role="TheHost" EntitySet="TheHost" />
           </AssociationSet>
           <AssociationSet Name="FK_VisitorPass_Pass" Association="Self.FK_VisitorPass_Pass">
             <End Role="Pass" EntitySet="Pass" />
@@ -240,7 +199,13 @@
           <EntitySet Name="Pass" EntityType="prrrModel.Pass" />
           <EntitySet Name="Subdivision" EntityType="prrrModel.Subdivision" />
           <EntitySet Name="sysdiagrams" EntityType="prrrModel.sysdiagrams" />
+          <EntitySet Name="Visitor" EntityType="prrrModel.Visitor" />
+          <EntitySet Name="VisitorPass" EntityType="prrrModel.VisitorPass" />
           <EntitySet Name="VisitPurpose" EntityType="prrrModel.VisitPurpose" />
+          <AssociationSet Name="FK_Docimentation_Visitor" Association="prrrModel.FK_Docimentation_Visitor">
+            <End Role="Visitor" EntitySet="Visitor" />
+            <End Role="Docimentation" EntitySet="Docimentation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Subdivision" Association="prrrModel.FK_Employee_Subdivision">
             <End Role="Subdivision" EntitySet="Subdivision" />
             <End Role="Employee" EntitySet="Employee" />
@@ -253,25 +218,20 @@
             <End Role="VisitPurpose" EntitySet="VisitPurpose" />
             <End Role="Pass" EntitySet="Pass" />
           </AssociationSet>
-          <AssociationSet Name="TheHost" Association="prrrModel.TheHost">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Subdivision" EntitySet="Subdivision" />
-          </AssociationSet>
-          <EntitySet Name="Visitor" EntityType="prrrModel.Visitor" />
-          <AssociationSet Name="FK_Docimentation_Visitor" Association="prrrModel.FK_Docimentation_Visitor">
-            <End Role="Visitor" EntitySet="Visitor" />
-            <End Role="Docimentation" EntitySet="Docimentation" />
-          </AssociationSet>
-          <AssociationSet Name="VisitorPass" Association="prrrModel.VisitorPass">
+          <AssociationSet Name="FK_VisitorPass_Pass" Association="prrrModel.FK_VisitorPass_Pass">
             <End Role="Pass" EntitySet="Pass" />
+            <End Role="VisitorPass" EntitySet="VisitorPass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitorPass_Visitor" Association="prrrModel.FK_VisitorPass_Visitor">
             <End Role="Visitor" EntitySet="Visitor" />
+            <End Role="VisitorPass" EntitySet="VisitorPass" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Docimentation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VisitorId" Type="Int32" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Visitor" Relationship="prrrModel.FK_Docimentation_Visitor" FromRole="Docimentation" ToRole="Visitor" />
@@ -280,36 +240,34 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SubdivisionId" Type="Int32" />
           <NavigationProperty Name="Subdivision" Relationship="prrrModel.FK_Employee_Subdivision" FromRole="Employee" ToRole="Subdivision" />
           <NavigationProperty Name="Pass" Relationship="prrrModel.FK_Pass_Employee" FromRole="Employee" ToRole="Pass" />
-          <NavigationProperty Name="Subdivision1" Relationship="prrrModel.TheHost" FromRole="Employee" ToRole="Subdivision" />
         </EntityType>
         <EntityType Name="Pass">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DesiredStartDate" Type="DateTime" Precision="0" />
           <Property Name="DesiredEndDate" Type="DateTime" Precision="0" />
           <Property Name="VisitPurposeId" Type="Int32" />
           <Property Name="EmployeeId" Type="Int32" />
           <NavigationProperty Name="Employee" Relationship="prrrModel.FK_Pass_Employee" FromRole="Pass" ToRole="Employee" />
           <NavigationProperty Name="VisitPurpose" Relationship="prrrModel.FK_Pass_VisitPurpose" FromRole="Pass" ToRole="VisitPurpose" />
-          <NavigationProperty Name="Visitor" Relationship="prrrModel.VisitorPass" FromRole="Pass" ToRole="Visitor" />
+          <NavigationProperty Name="VisitorPass" Relationship="prrrModel.FK_VisitorPass_Pass" FromRole="Pass" ToRole="VisitorPass" />
         </EntityType>
         <EntityType Name="Subdivision">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="prrrModel.FK_Employee_Subdivision" FromRole="Subdivision" ToRole="Employee" />
-          <NavigationProperty Name="Employee1" Relationship="prrrModel.TheHost" FromRole="Subdivision" ToRole="Employee" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -321,14 +279,56 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Visitor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="PassportSeries" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OassportNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Docimentation" Relationship="prrrModel.FK_Docimentation_Visitor" FromRole="Visitor" ToRole="Docimentation" />
+          <NavigationProperty Name="VisitorPass" Relationship="prrrModel.FK_VisitorPass_Visitor" FromRole="Visitor" ToRole="VisitorPass" />
+        </EntityType>
+        <EntityType Name="VisitorPass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="VisitorId" Type="Int32" />
+          <Property Name="PassId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Pass" Relationship="prrrModel.FK_VisitorPass_Pass" FromRole="VisitorPass" ToRole="Pass" />
+          <NavigationProperty Name="Visitor" Relationship="prrrModel.FK_VisitorPass_Visitor" FromRole="VisitorPass" ToRole="Visitor" />
+        </EntityType>
         <EntityType Name="VisitPurpose">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Pass" Relationship="prrrModel.FK_Pass_VisitPurpose" FromRole="VisitPurpose" ToRole="Pass" />
         </EntityType>
+        <Association Name="FK_Docimentation_Visitor">
+          <End Type="prrrModel.Visitor" Role="Visitor" Multiplicity="0..1" />
+          <End Type="prrrModel.Docimentation" Role="Docimentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visitor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Docimentation">
+              <PropertyRef Name="VisitorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Subdivision">
           <End Type="prrrModel.Subdivision" Role="Subdivision" Multiplicity="0..1" />
           <End Type="prrrModel.Employee" Role="Employee" Multiplicity="*" />
@@ -365,45 +365,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TheHost">
-          <End Type="prrrModel.Employee" Role="Employee" Multiplicity="*" />
-          <End Type="prrrModel.Subdivision" Role="Subdivision" Multiplicity="*" />
+        <Association Name="FK_VisitorPass_Pass">
+          <End Type="prrrModel.Pass" Role="Pass" Multiplicity="1" />
+          <End Type="prrrModel.VisitorPass" Role="VisitorPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitorPass">
+              <PropertyRef Name="PassId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <EntityType Name="Visitor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
-          <Property Name="PassportSeries" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="OassportNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Docimentation" Relationship="prrrModel.FK_Docimentation_Visitor" FromRole="Visitor" ToRole="Docimentation" />
-          <NavigationProperty Name="Pass" Relationship="prrrModel.VisitorPass" FromRole="Visitor" ToRole="Pass" />
-        </EntityType>
-        <Association Name="FK_Docimentation_Visitor">
+        <Association Name="FK_VisitorPass_Visitor">
           <End Type="prrrModel.Visitor" Role="Visitor" Multiplicity="0..1" />
-          <End Type="prrrModel.Docimentation" Role="Docimentation" Multiplicity="*" />
+          <End Type="prrrModel.VisitorPass" Role="VisitorPass" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Visitor">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Docimentation">
+            <Dependent Role="VisitorPass">
               <PropertyRef Name="VisitorId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="VisitorPass">
-          <End Type="prrrModel.Pass" Role="Pass" Multiplicity="*" />
-          <End Type="prrrModel.Visitor" Role="Visitor" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -461,22 +445,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VisitPurpose">
-            <EntityTypeMapping TypeName="prrrModel.VisitPurpose">
-              <MappingFragment StoreEntitySet="VisitPurpose">
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="TheHost" TypeName="prrrModel.TheHost" StoreEntitySet="TheHost">
-            <EndProperty Name="Subdivision">
-              <ScalarProperty Name="Id" ColumnName="SubdivisionId" />
-            </EndProperty>
-            <EndProperty Name="Employee">
-              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Visitor">
             <EntityTypeMapping TypeName="prrrModel.Visitor">
               <MappingFragment StoreEntitySet="Visitor">
@@ -496,14 +464,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="VisitorPass" TypeName="prrrModel.VisitorPass" StoreEntitySet="VisitorPass">
-            <EndProperty Name="Visitor">
-              <ScalarProperty Name="Id" ColumnName="VisitorId" />
-            </EndProperty>
-            <EndProperty Name="Pass">
-              <ScalarProperty Name="Id" ColumnName="PassId" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="VisitorPass">
+            <EntityTypeMapping TypeName="prrrModel.VisitorPass">
+              <MappingFragment StoreEntitySet="VisitorPass">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PassId" ColumnName="PassId" />
+                <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitPurpose">
+            <EntityTypeMapping TypeName="prrrModel.VisitPurpose">
+              <MappingFragment StoreEntitySet="VisitPurpose">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

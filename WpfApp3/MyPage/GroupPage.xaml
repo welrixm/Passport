@@ -15,7 +15,7 @@
             <ColumnDefinition Width="51*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="160*"/>
+            <RowDefinition Height="130*"/>
             <RowDefinition Height="197*"/>
             <RowDefinition Height="93*"/>
         </Grid.RowDefinitions>
@@ -48,7 +48,7 @@
                 <TextBlock  Text="Принимающая сторона"  HorizontalAlignment="Center"/>
             </Border>
             <TextBlock Text="Подразделение" Padding="5"/>
-            <ComboBox Padding="5" Width="300" Height="20" />
+            <ComboBox  x:Name="SubdivisionCb" SelectedItem="{Binding Subdivision}" Padding="5" Width="300" Height="20" SelectionChanged="SubdivisionCb_SelectionChanged" />
             <TextBlock Text="ФИО" Padding="5"/>
             <TextBox x:Name="NSPTb" Padding="5" Height="20" Width="300"/>
         </StackPanel>
@@ -78,41 +78,44 @@
 
 
                 <TextBlock Text="Фамилия*" Padding="5" Grid.Row="0" Grid.Column="0" />
-                <TextBox x:Name="LastNameTb" Style="{StaticResource MeTextBox}" Grid.Row="0" Grid.Column="1" Height="Auto" Margin="9,5" Width="Auto" />
+                <TextBox x:Name="LastNameTb"  Grid.Row="0"
+                         Grid.Column="1" Height="Auto" Margin="9,5" Width="Auto" PreviewTextInput="LastNameTb_PreviewTextInput" />
 
                 <TextBlock Text="Имя*" Padding="5" Grid.Row="1" Grid.Column="0" />
-                <TextBox x:Name="NameTb" Grid.Row="1" Grid.Column="1" Style="{StaticResource MeTextBox}" Height="Auto" Margin="9,5" Width="Auto"/>
+                <TextBox x:Name="NameTb" Grid.Row="1" Grid.Column="1"  Height="Auto" Margin="9,5" Width="Auto" PreviewTextInput="NameTb_PreviewTextInput"/>
 
                 <TextBlock Text="Отчество*" Padding="5" Grid.Row="2" Grid.Column="0" />
-                <TextBox x:Name="PadingTb" Grid.Row="2" Grid.Column="1"  Style="{StaticResource MeTextBox}" Height="Auto" Margin="9,5" Width="Auto"/>
+                <TextBox x:Name="PadingTb" Grid.Row="2" Grid.Column="1"   Height="Auto" Margin="9,5" Width="Auto" PreviewTextInput="PadingTb_PreviewTextInput"/>
 
                 <TextBlock Text="Телефон*" Padding="5" Grid.Row="3" Grid.Column="0" />
-                <TextBox x:Name="PHONEBT" Grid.Row="3" Grid.Column="1"  Style="{StaticResource MeTextBox}" Height="Auto" Margin="9,5" Width="Auto"/>
+                <TextBox x:Name="PHONEBT" Grid.Row="3" Grid.Column="1"  Height="Auto" Margin="9,5" Width="Auto" PreviewTextInput="PHONEBT_PreviewTextInput"/>
 
                 <TextBlock Text="E-mail" Padding="5" Grid.Row="4" Grid.Column="0" />
                 <TextBox x:Name="MailTb" Grid.Row="4" Grid.Column="1"  Style="{StaticResource MeTextBox}" Height="Auto" Margin="9,5" Width="Auto"/>
 
                 <TextBlock Text="Организация*" Padding="5" Grid.Row="0" Grid.Column="2" />
-                <TextBox x:Name="OrgTb" Grid.Row="0" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
+                <TextBox x:Name="OrgTb" Grid.Row="0" Grid.Column="3" Margin="9,5" 
+                         Height="Auto" Width="Auto" PreviewTextInput="OrgTb_PreviewTextInput"/>
 
 
                 <TextBlock Text="Примечания" Padding="5" Grid.Row="1" Grid.Column="2" />
-                <TextBox x:Name="PrimTb" Grid.Row="1" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
+                <TextBox x:Name="PrimTb" Grid.Row="1" Grid.Column="3" 
+                         Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
 
                 <TextBlock Text="Дата рождения" Padding="5" Grid.Row="2" Grid.Column="2" />
 
                 <DatePicker x:Name="DateTb" Grid.Row="2" Grid.Column="3" Padding="4"/>
 
-
-
-
-
-
                 <TextBlock Text="Серия" Padding="5" Grid.Row="3" Grid.Column="2" />
-                <TextBox x:Name="CerTb" Grid.Row="3" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
+                <TextBox x:Name="CerTb" Grid.Row="3" Grid.Column="3" Margin="9,5"  MaxLength="4"   Height="Auto" Width="Auto" PreviewTextInput="CerTb_PreviewTextInput"/>
 
                 <TextBlock Text="Номер" Padding="5" Grid.Row="4" Grid.Column="2" />
-                <TextBox x:Name="NumTb" Grid.Row="4" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
+                <TextBox x:Name="NumTb" Grid.Row="4" Grid.Column="3" Margin="9,5"  MaxLength="6" Height="Auto" Width="Auto"
+                         PreviewTextInput="NumTb_PreviewTextInput"/>
+
+                <Image x:Name="ImageVisitor" Margin="5" Width="120" Height="120" Grid.Column="4" Grid.RowSpan="4"></Image>
+                <Button x:Name="AddBtn" Content="Добавить изображение"
+                        Grid.Column="4" Grid.Row="4"  Width="150" Style="{StaticResource MyButton}" Click="AddBtn_Click"/>
             </Grid>
         </StackPanel>
 
@@ -122,7 +125,7 @@
             </Border>
             <Button 
               Margin="10" 
-                Height="20" Width="130" HorizontalAlignment="Left" 
+                Height="20" Width="130" HorizontalAlignment="Left" IsEnabled="False"
                >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
@@ -136,7 +139,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,21,10,20" HorizontalAlignment="Right" VerticalAlignment="Center" Height="52" Width="240">
             <Button x:Name="ClearBtn" Content="Очистить форму" Height="20" Width="100"  Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" />
-            <Button Style="{StaticResource MyButton}" Height="22"  Width="110" Content="Оформиь заявку" Margin="15"></Button>
+            <Button Style="{StaticResource MyButton}" Height="22"  Width="110" Content="Оформиь заявку" Margin="15" Click="Button_Click"></Button>
         </StackPanel>
     </Grid>
 </Page>

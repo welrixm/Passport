@@ -35,24 +35,65 @@ namespace WpfApp3.MyPage
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-             vis = new Visitor   {
-                LastName = FastNameTb.Text.Trim(),
-                Name = NameTb.Text.Trim(),
-                 Patronimic= PadingTb.Text.Trim(),
-                Phone = PHONEBT.Text.Trim(),
-                Email = MailTb.Text.Trim(),
-                Organization = OrgTb.Text.Trim(),
-                Note = PrimTb.Text.Trim(),
-                DateOfBirth =(DateTime)DateTb.SelectedDate,
-                PassportSeries = CerTb.Text.Trim(),
-                OassportNum = NumTb.Text.Trim(),
+            if (FastNameTb.Text.Length > 0 && NameTb.Text.Length > 0 && PadingTb.Text.Length > 0)
+            {
+                if (PHONEBT.Text.Length > 0 && MailTb.Text.Length > 0 && OrgTb.Text.Length>0)
+                {
+                    if (DateTb != null)
+                    {
+                        if (CerTb.Text.Length > 0  && NumTb.Text.Length > 0 )
+                        {
 
-            };
-            BdConectn.db.Visitor.Add(vis) ;
-            BdConectn.db.SaveChanges();
-            MessageBox.Show("Пользователь создан");
+                            vis = new Visitor
+                            {
+                                LastName = FastNameTb.Text.Trim(),
+                                Name = NameTb.Text.Trim(),
+                                Patronimic = PadingTb.Text.Trim(),
+                                Phone = PHONEBT.Text.Trim(),
+                                Email = MailTb.Text.Trim(),
+                                Organization = OrgTb.Text.Trim(),
+                                Note = PrimTb.Text.Trim(),
+                                DateOfBirth = (DateTime)DateTb.SelectedDate,
+                                PassportSeries = CerTb.Text.Trim(),
+                                OassportNum = NumTb.Text.Trim(),
+
+                            };
+                            BdConectn.db.Visitor.Add(vis);
+                            BdConectn.db.SaveChanges();
+                            MessageBox.Show("Пользователь создан");
+                        }
+                        else MessageBox.Show("Заполните поля серии и номера паспорта");
+
+                    }
+                    else MessageBox.Show("Заполните дату рождения");
+                }
+                else MessageBox.Show("вы не заполнили поля телефона или почты или организации");
+            }
+            else MessageBox.Show("Проверьте заполнение фио");
+           
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var sub = SubdivisionCb.SelectedItem as Subdivision;
+            var ifo = BdConectn.db.Employee.ToList().FirstOrDefault(x => x.SubdivisionId == sub.Id);
+            var visi = BdConectn.db.Visitor.Where(x => x.LastName == FastNameTb.Text && x.Name == NameTb.Text && x.Patronimic == PadingTb.Text).FirstOrDefault();
+            BdConectn.db.VisitorPass.Add(new VisitorPass 
+            { Visitor = vis,
+            Pass = new Pass 
+            {
+
+                DesiredStartDate = (DateTime)DateNewTb.SelectedDate,
+                DesiredEndDate = (DateTime)DateEndTb.SelectedDate,
+                Employee = ifo,
+                VisitPurpose = VisitPurposeCb.SelectedItem as VisitPurpose,
+            },
+                
+                });
+            
+            MessageBox.Show("Заявка создана");
+            BdConectn.db.SaveChanges();
+        }
         private void FastNameTb_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!Char.IsLetter(e.Text, 0))
@@ -119,5 +160,6 @@ namespace WpfApp3.MyPage
             var ifo = BdConectn.db.Employee.ToList().FirstOrDefault(x => x.SubdivisionId == sub.Id);
             NSPTb.Text = ifo.LastName + " " + ifo.Name + " " + ifo.Patronimyc ;
         }
+
     }
 }

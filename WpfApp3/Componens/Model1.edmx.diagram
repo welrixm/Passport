@@ -5,19 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a32281e6529445d3b45b844680bdf857" Name="Diagram1">
-        <EntityTypeShape EntityType="prrrModel.Docimentation" Width="1.5" PointX="7.5" PointY="2.125" />
-        <EntityTypeShape EntityType="prrrModel.Employee" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="prrrModel.Pass" Width="1.5" PointX="3" PointY="1.75" />
-        <EntityTypeShape EntityType="prrrModel.Subdivision" Width="1.5" PointX="1.5" PointY="9.125" />
-        <EntityTypeShape EntityType="prrrModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" />
-        <EntityTypeShape EntityType="prrrModel.VisitPurpose" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="prrrModel.Docimentation" Width="1.5" PointX="7.5" PointY="8" />
+        <EntityTypeShape EntityType="prrrModel.Employee" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="prrrModel.Pass" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="prrrModel.Subdivision" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="prrrModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="prrrModel.Visitor" Width="1.5" PointX="5.25" PointY="6.875" />
+        <EntityTypeShape EntityType="prrrModel.VisitorPass" Width="1.5" PointX="7.5" PointY="1.25" />
+        <EntityTypeShape EntityType="prrrModel.VisitPurpose" Width="1.5" PointX="3" PointY="5.375" />
+        <AssociationConnector Association="prrrModel.FK_Docimentation_Visitor" />
         <AssociationConnector Association="prrrModel.FK_Employee_Subdivision" />
         <AssociationConnector Association="prrrModel.FK_Pass_Employee" />
         <AssociationConnector Association="prrrModel.FK_Pass_VisitPurpose" />
-        <AssociationConnector Association="prrrModel.TheHost" />
-        <EntityTypeShape EntityType="prrrModel.Visitor" Width="1.5" PointX="5.25" PointY="1.125" />
-        <AssociationConnector Association="prrrModel.FK_Docimentation_Visitor" />
-        <AssociationConnector Association="prrrModel.VisitorPass" />
+        <AssociationConnector Association="prrrModel.FK_VisitorPass_Pass" />
+        <AssociationConnector Association="prrrModel.FK_VisitorPass_Visitor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,7 +17,7 @@ namespace WpfApp3.Componens
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pass()
         {
-            this.Visitor = new HashSet<Visitor>();
+            this.VisitorPass = new HashSet<VisitorPass>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace WpfApp3.Componens
         public virtual Employee Employee { get; set; }
         public virtual VisitPurpose VisitPurpose { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Visitor> Visitor { get; set; }
+        public virtual ICollection<VisitorPass> VisitorPass { get; set; }
     }
 }

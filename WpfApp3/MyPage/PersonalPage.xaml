@@ -125,10 +125,10 @@
 
 
                 <TextBlock Text="Серия" Padding="5" Grid.Row="3" Grid.Column="2" />
-                <TextBox x:Name="CerTb" Grid.Row="3" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto" PreviewTextInput="CerTb_PreviewTextInput"/>
+                <TextBox x:Name="CerTb" Grid.Row="3" Grid.Column="3" MaxLength="4" Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto" PreviewTextInput="CerTb_PreviewTextInput"/>
 
                 <TextBlock Text="Номер" Padding="5" Grid.Row="4" Grid.Column="2" />
-                <TextBox x:Name="NumTb" Grid.Row="4" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto" PreviewTextInput="NumTb_PreviewTextInput"/>
+                <TextBox x:Name="NumTb" Grid.Row="4" Grid.Column="3"  MaxLength="6" Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto" PreviewTextInput="NumTb_PreviewTextInput"/>
 
                 <Button Content="Создать посетителя" Grid.Column="2"
                         Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource MyButton}"
@@ -149,11 +149,25 @@
                 <TextBlock  Text="Прикрепляемые документы" Width="300"></TextBlock>
             </Border>
             <Button 
-                Content="Прикрепить Файл" Margin="10" 
+                 Margin="10" 
                 Height="20" Width="120" HorizontalAlignment="Left"
                 Style="{StaticResource MyButton}"
                  x:Name="AddImageBtn" Click="AddImageBtn_Click"
-               />
+               >
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Source="C:\Users\232001\source\repos\WpfApp3\WpfApp3\Images\e2b5789c-237d-4da1-a83a-0b8b34478ae2.jpg"/>
+                        <TextBlock Text="Прикрепить Файл"/>
+                    </StackPanel>
+
+                </Button.Content>
+            </Button>
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,21,10,20" HorizontalAlignment="Right" VerticalAlignment="Center" Height="52" Width="240">
+            <Button x:Name="ClearBtn" Content="Очистить форму" Height="20" Width="100"  Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" />
+            <Button Style="{StaticResource MyButton}" Height="22"  Width="110" Content="Оформиь заявку"
+                    Margin="15" Click="Button_Click"></Button>
+        </StackPanel>
+
     </Grid>
 </Page>

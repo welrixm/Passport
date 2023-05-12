@@ -18,7 +18,6 @@ namespace WpfApp3.Componens
         public Subdivision()
         {
             this.Employee = new HashSet<Employee>();
-            this.Employee1 = new HashSet<Employee>();
         }
     
         public int Id { get; set; }
@@ -26,7 +25,5 @@ namespace WpfApp3.Componens
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employee { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee1 { get; set; }
     }
 }
