@@ -43,9 +43,13 @@ namespace WpfApp3.MyPage
                 {
                     MessageBox.Show("Такого пользователя нет");
                 }
+                else 
+                {
+                
                 Navigation.isAuth = true; 
                 Navigation.NextPage(new Nav("", new HomePage()));
               
+                }
             }
             else
             {

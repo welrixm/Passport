@@ -14,13 +14,14 @@
             <ColumnDefinition Width="51*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="130*"/>
+            <RowDefinition Height="150*"/>
             <RowDefinition Height="227*"/>
             <RowDefinition Height="93*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Stretch" >
 
-            <Border Background="Orange" CornerRadius="5"  Width="350" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Border Background="Orange" CornerRadius="5"  Width="350" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" >
                 <TextBlock  Text="Информация для пропуска" Width="300"></TextBlock>
             </Border>
             <StackPanel Orientation="Vertical" Background="#FFF3F3F3">
@@ -38,18 +39,24 @@
 
                 </StackPanel>
                 <TextBlock Text="цель посещения"></TextBlock>
-                <ComboBox Margin="10"></ComboBox>
+                <ComboBox Margin="10" SelectedItem="{Binding VisitPurpose}"
+                          x:Name="VisitPurposeCb"></ComboBox>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Orientation="Vertical" Background="#FFF3F3F3">
-            <Border Background="Orange" CornerRadius="5" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center"  >
+        <StackPanel HorizontalAlignment="Right" Grid.Row="0" Grid.Column="1" Orientation="Vertical"
+                    Margin="5 0 5 10"
+                    Background="#FFF3F3F3">
+            <Border Background="Orange" CornerRadius="5" Width="350" HorizontalAlignment="Center"
+                    VerticalAlignment="Center"  >
                 <TextBlock  Text="Принимающая сторона"  HorizontalAlignment="Center"/>
             </Border>
             <TextBlock Text="Подразделение" Padding="5"/>
-            <ComboBox Padding="5" Width="300" Height="20" />
+            <ComboBox Padding="5" x:Name="SubdivisionCb" Width="300" Height="30"  
+                      SelectedItem="{Binding Subdivision}"
+                      SelectionChanged="SubdivisionCb_SelectionChanged"/>
             <TextBlock Text="ФИО" Padding="5"/>
-            <TextBox x:Name="NSPTb" Padding="5" Height="20" Width="300"/>
+            <TextBox x:Name="NSPTb" Padding="5" Height="30" Width="300"/>
         </StackPanel>
 
 
@@ -62,56 +69,70 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="93*"/>
-                    <ColumnDefinition Width="144*"/>
-                    <ColumnDefinition Width="106*"/>
-                    <ColumnDefinition Width="200*"/>
-                    <ColumnDefinition Width="51*"/>
-                    <ColumnDefinition Width="206*"/>
+                    <ColumnDefinition Width="150*"/>
+                    <ColumnDefinition Width="108*"/>
+                    <ColumnDefinition Width="150*"/>
+          
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/> 
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
 
                 <TextBlock Text="Фамилия*" Padding="5" Grid.Row="0" Grid.Column="0" />
+                <TextBox x:Name="FastNameTb" Grid.Row="0" Grid.Column="1" Style="{StaticResource MeTextBox}" 
+                         Height="Auto"  Width="Auto" PreviewTextInput="FastNameTb_PreviewTextInput"/>
 
                 <TextBlock Text="Имя*" Padding="5" Grid.Row="1" Grid.Column="0" />
-                <TextBox x:Name="NameTb" Grid.Row="1" Grid.Column="1" Style="{StaticResource MeTextBox}" Height="Auto" Margin="9,5" Width="Auto"/>
+                <TextBox x:Name="NameTb" Grid.Row="1" Grid.Column="1" Style="{StaticResource MeTextBox}" 
+                         Height="Auto"  Width="Auto" PreviewTextInput="NameTb_PreviewTextInput"/>
 
                 <TextBlock Text="Отчество*" Padding="5" Grid.Row="2" Grid.Column="0" />
-                <TextBox x:Name="PadingTb" Grid.Row="2" Grid.Column="1"  Style="{StaticResource MeTextBox}" Height="Auto" Margin="9,5" Width="Auto"/>
+                <TextBox x:Name="PadingTb" Grid.Row="2"
+                         Grid.Column="1"  Style="{StaticResource MeTextBox}" 
+                         Height="Auto" Margin="9,5" Width="Auto" PreviewTextInput="PadingTb_PreviewTextInput"/>
 
                 <TextBlock Text="Телефон*" Padding="5" Grid.Row="3" Grid.Column="0" />
-                <TextBox x:Name="PHONEBT" Grid.Row="3" Grid.Column="1"  Style="{StaticResource MeTextBox}" Height="Auto" Margin="9,5" Width="Auto"/>
+                <TextBox x:Name="PHONEBT" Grid.Row="3"
+                         Grid.Column="1"  Style="{StaticResource MeTextBox}"
+                         Height="Auto" Margin="9,5" Width="Auto" PreviewTextInput="PHONEBT_PreviewTextInput"/>
 
                 <TextBlock Text="E-mail" Padding="5" Grid.Row="4" Grid.Column="0" />
-                <TextBox x:Name="MailTb" Grid.Row="4" Grid.Column="1"  Style="{StaticResource MeTextBox}" Height="Auto" Margin="9,5" Width="Auto"/>
+                <TextBox x:Name="MailTb" Grid.Row="4"
+                         Grid.Column="1"  Style="{StaticResource MeTextBox}"
+                         Height="Auto" Margin="9,5" Width="Auto"/>
 
                 <TextBlock Text="Организация*" Padding="5" Grid.Row="0" Grid.Column="2" />
-                <TextBox x:Name="OrgTb" Grid.Row="0" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
+                <TextBox x:Name="OrgTb" Grid.Row="0" Grid.Column="3" 
+                         Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto" PreviewTextInput="OrgTb_PreviewTextInput"/>
 
 
                 <TextBlock Text="Примечания" Padding="5" Grid.Row="1" Grid.Column="2" />
-                <TextBox x:Name="PrimTb" Grid.Row="1" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
+                <TextBox x:Name="PrimTb" Grid.Row="1" Grid.Column="3" 
+                         Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
 
                 <TextBlock Text="Дата рождения" Padding="5" Grid.Row="2" Grid.Column="2" />
-                <DatePicker x:Name="DateTb"  Grid.Row="2" Grid.Column="3"  IsTodayHighlighted="False" SelectedDateFormat="Short" AllowDrop="True" DisplayDateEnd="2023-04-17"/>
+                <DatePicker x:Name="DateTb"  Grid.Row="2" Grid.Column="3" 
+                            IsTodayHighlighted="False" SelectedDateFormat="Short" 
+                            AllowDrop="True" DisplayDateEnd="2023-04-17"/>
 
 
 
 
                 <TextBlock Text="Серия" Padding="5" Grid.Row="3" Grid.Column="2" />
-                <TextBox x:Name="CerTb" Grid.Row="3" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
+                <TextBox x:Name="CerTb" Grid.Row="3" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto" PreviewTextInput="CerTb_PreviewTextInput"/>
 
                 <TextBlock Text="Номер" Padding="5" Grid.Row="4" Grid.Column="2" />
-                <TextBox x:Name="NumTb" Grid.Row="4" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto"/>
-                <Image Grid.Column="5" Grid.ColumnSpan="1" Grid.RowSpan="3" Height="100" Width="150" Margin="2,10,54,10"
-                     ></Image>
-                <Button Content="Загрузить фото" Grid.Column="5" Grid.Row="3" Style="{StaticResource MyButton}" Width="100" Margin="28,5,78,5"></Button>
+                <TextBox x:Name="NumTb" Grid.Row="4" Grid.Column="3"  Style="{StaticResource MeTextBox}" Height="Auto" Width="Auto" PreviewTextInput="NumTb_PreviewTextInput"/>
+
+                <Button Content="Создать посетителя" Grid.Column="2"
+                        Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource MyButton}"
+                        x:Name="AddBtn" Click="AddBtn_Click"/>
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Background="#FFF3F3F3">
@@ -130,6 +151,8 @@
             <Button 
                 Content="Прикрепить Файл" Margin="10" 
                 Height="20" Width="120" HorizontalAlignment="Left"
+                Style="{StaticResource MyButton}"
+                 x:Name="AddImageBtn" Click="AddImageBtn_Click"
                />
         </StackPanel>
     </Grid>

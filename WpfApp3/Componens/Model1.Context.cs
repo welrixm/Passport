@@ -30,7 +30,6 @@ namespace WpfApp3.Componens
         public virtual DbSet<Pass> Pass { get; set; }
         public virtual DbSet<Subdivision> Subdivision { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<TheHost> TheHost { get; set; }
         public virtual DbSet<VisitPurpose> VisitPurpose { get; set; }
         public virtual DbSet<Visitor> Visitor { get; set; }
     }

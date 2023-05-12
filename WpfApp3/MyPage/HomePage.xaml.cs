@@ -30,12 +30,14 @@ namespace WpfApp3.MyPage
 
         private void Li4noeBtn_Click(object sender, RoutedEventArgs e)
         {
-            Navigation.NextPage(new Nav("", new PersonalPage()));
+            NavigationService.Navigate(new GroupPage());
+
         }
 
         private void GroupBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new GroupPage());
+          
+            Navigation.NextPage(new Nav("", new PersonalPage()));
         }
     }
 }

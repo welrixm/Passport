@@ -17,15 +17,20 @@ namespace WpfApp3.Componens
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.TheHost = new HashSet<TheHost>();
+            this.Pass = new HashSet<Pass>();
+            this.Subdivision1 = new HashSet<Subdivision>();
         }
     
         public int Id { get; set; }
         public string LastName { get; set; }
         public string Name { get; set; }
         public string Patronimyc { get; set; }
+        public Nullable<int> SubdivisionId { get; set; }
     
+        public virtual Subdivision Subdivision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TheHost> TheHost { get; set; }
+        public virtual ICollection<Pass> Pass { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Subdivision> Subdivision1 { get; set; }
     }
 }

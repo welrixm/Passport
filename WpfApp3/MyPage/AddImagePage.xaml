@@ -1,0 +1,20 @@
+﻿<Window x:Class="WpfApp3.MyPage.AddImagePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3.MyPage"
+        mc:Ignorable="d"
+        Title="AddImagePage" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Пользователь"/>
+            <TextBlock x:Name="VisitTb"/>
+            <Image x:Name="PhoteImage" Height="150" Width="150" Margin="5"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Добавить" Style="{StaticResource MyButton}" x:Name="AddBtn" Click="AddBtn_Click"/>
+                <Button Content="Сохранить" Style="{StaticResource MyButton}" x:Name="SaveBtn" Click="SaveBtn_Click"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -23,6 +23,7 @@ namespace WpfApp3.MyPage
         public GroupPage()
         {
             InitializeComponent();
+  
         }
     }
 }
