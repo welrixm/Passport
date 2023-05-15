@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +15,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp3.Componens;
+using System.Data.SqlClient;
 using WpfApp3.MyPage;
-
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Win32;
 
 namespace WpfApp3.MyPage
 {
@@ -23,6 +28,7 @@ namespace WpfApp3.MyPage
     /// </summary>
     public partial class PersonalPage : Page
     {
+        private ObservableCollection<Visitor> _people = new ObservableCollection<Visitor>();
         public Visitor vis { get; set; }
         public PersonalPage()
         {
@@ -31,7 +37,27 @@ namespace WpfApp3.MyPage
             SubdivisionCb.DisplayMemberPath = "Title";
             VisitPurposeCb.ItemsSource = BdConectn.db.VisitPurpose.ToList();
             VisitPurposeCb.DisplayMemberPath = "Title";
+           
+            var db = BdConectn.db;
+            db.Visitor.ToList();
+            db.VisitorPass.ToList();
+            visitors = db.Visitor.ToList();
         }
+
+
+
+        public IEnumerable<Visitor> visitors
+        {
+            get { return (IEnumerable<Visitor>)GetValue(visitorsProperty); }
+            set { SetValue(visitorsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for visitors.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty visitorsProperty =
+            DependencyProperty.Register("visitors", typeof(IEnumerable<Visitor>), typeof(PersonalPage));
+
+
+        #region
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -161,5 +187,67 @@ namespace WpfApp3.MyPage
             NSPTb.Text = ifo.LastName + " " + ifo.Name + " " + ifo.Patronimyc ;
         }
 
+        private void MailTb_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (MailTb.Text.EndsWith("@mail.ru"))
+            {
+
+            }
+            else if (MailTb.Text == string.Empty)
+            {
+
+            }
+           
+
+            else if (MailTb.Text.EndsWith("@gmail.com"))
+            {
+
+            }
+            else if (MailTb.Text.EndsWith("@yandex.ru"))
+            {
+
+            }
+            else if (MailTb.Text.EndsWith("@inbox.ru"))
+            {
+
+            }
+            else if (MailTb.Text.EndsWith("@bk.ru"))
+            {
+
+            }
+            else if (MailTb.Text.EndsWith("@hotmail.com"))
+            {
+
+            }
+            
+           
+
+            else
+            {
+                MessageBox.Show("Неверный адрес электронной почты. Возможное окончание почты: @yandex.ru\r\n@mail.ru\r\n@inbox.ru\r\n@bk.ru\r\n@hotmail.com\r\n@gmail.com");
+                MailTb.Text = string.Empty;
+            }
+        }
+        #endregion
+        public class Person
+        {
+            public int Id { get; set; }
+            public string FullName { get; set; }
+            public string Phone { get; set; }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFil = new OpenFileDialog()
+            {
+                Filter = "**.png|*.png|*.jpeg|*.jpeg|*.jpg|*.jpg",
+            };
+            //if (openFil.ShowDialog().GetValueOrDefault())
+            //{
+            //    image = File.ReadAllBytes(openFil.FileName);
+            //    ImageVisitor.Source = new BitmapImage(new Uri(openFil.FileName));
+            //}
+        }
     }
+
 }

@@ -4,9 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp3.MyPage"
+      xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="PersonalPage">
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      Title="PersonalPage" Height="477" Width="864">
+
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -18,6 +20,7 @@
             <RowDefinition Height="227*"/>
             <RowDefinition Height="93*"/>
         </Grid.RowDefinitions>
+        <!--#region NewRegion -->
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Stretch" >
 
             <Border Background="Orange" CornerRadius="5"  Width="350" HorizontalAlignment="Center" 
@@ -72,14 +75,14 @@
                     <ColumnDefinition Width="150*"/>
                     <ColumnDefinition Width="108*"/>
                     <ColumnDefinition Width="150*"/>
-          
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/> 
+                    <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
@@ -98,12 +101,11 @@
                          Height="Auto" Margin="9,5" Width="Auto" PreviewTextInput="PadingTb_PreviewTextInput"/>
 
                 <TextBlock Text="Телефон*" Padding="5" Grid.Row="3" Grid.Column="0" />
-                <TextBox x:Name="PHONEBT" Grid.Row="3"
-                         Grid.Column="1"  Style="{StaticResource MeTextBox}"
-                         Height="Auto" Margin="9,5" Width="Auto" PreviewTextInput="PHONEBT_PreviewTextInput"/>
+                <toolkit:MaskedTextBox Mask="+7 (000) 000 00-00" x:Name="PHONEBT" Grid.Row="3" Grid.Column="1" Height="Auto" Margin="9,5" Width="Auto"/>
+
 
                 <TextBlock Text="E-mail" Padding="5" Grid.Row="4" Grid.Column="0" />
-                <TextBox x:Name="MailTb" Grid.Row="4"
+                <TextBox x:Name="MailTb" Grid.Row="4" LostFocus="MailTb_LostFocus"
                          Grid.Column="1"  Style="{StaticResource MeTextBox}"
                          Height="Auto" Margin="9,5" Width="Auto"/>
 
@@ -119,7 +121,7 @@
                 <TextBlock Text="Дата рождения" Padding="5" Grid.Row="2" Grid.Column="2" />
                 <DatePicker x:Name="DateTb"  Grid.Row="2" Grid.Column="3" 
                             IsTodayHighlighted="False" SelectedDateFormat="Short" 
-                            AllowDrop="True" DisplayDateEnd="2023-04-17"/>
+                            AllowDrop="True" DisplayDateEnd="2007-04-17" FirstDayOfWeek="Monday"/>
 
 
 
@@ -135,14 +137,94 @@
                         x:Name="AddBtn" Click="AddBtn_Click"/>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" Background="#FFF3F3F3">
-            <Border Background="Orange" CornerRadius="4"  VerticalAlignment="Center" Height="25" Margin="5 0 5 5">
-                <StackPanel HorizontalAlignment="Center" >
-                    <TextBlock  Text="Список посетителей" ></TextBlock>
-                </StackPanel>
-            </Border>
 
-        </StackPanel>
+        <!--#endregion-->
+        <Grid Grid.Row="1" Grid.Column="1" Background="#FFF3F3F3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Background="Orange" Grid.Row="0" CornerRadius="4"  VerticalAlignment="Center" Height="25" >
+                    <StackPanel HorizontalAlignment="Center" >
+                        <TextBlock  Text="Список посетителей" ></TextBlock>
+                    </StackPanel>
+                </Border>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="113*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="15*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Foreground="Red" Text="загрузить список" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="94"/>
+                    <TextBlock Foreground="Red" Grid.Column="2" Text="Скачать шаблон списка" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="154"/>
+                    <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Height="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*"/>
+                            <ColumnDefinition Width="206*"/>
+                            <ColumnDefinition Width="101*"/>
+                            <ColumnDefinition Width="73*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="№" HorizontalAlignment="Center" VerticalAlignment="Top" Height="16"  Width="14"/>
+                        <TextBlock Grid.Column="1" Text="ФИО" HorizontalAlignment="Center" VerticalAlignment="Top" Height="16" Width="26"/>
+                        <TextBlock Grid.Column="2" Text="Контакты" HorizontalAlignment="Center" VerticalAlignment="Top" Height="16" />
+                        <TextBlock Grid.Column="3" Text="Фотография" HorizontalAlignment="Center" VerticalAlignment="Top" Height="16" />
+                        <Border BorderBrush="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1"/>
+
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2" Height="180" HorizontalAlignment="Left">
+                    <ListView  x:Name="myListView" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding visitors}"    ScrollViewer.HorizontalScrollBarVisibility="Disabled"   d:ItemsSource="{d:SampleData ItemCount=5}"  >
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="28"/>
+                                        <ColumnDefinition Width="206"/>
+                                        <ColumnDefinition Width="101"/>
+                                        <ColumnDefinition Width="73"/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+
+                                    </Grid.RowDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="{Binding Id}" />
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
+                                        <TextBlock VerticalAlignment="Center"   Text="{Binding Name}" />
+                                        <TextBlock Text=" "/>
+                                        <TextBlock VerticalAlignment="Center"   Text="{Binding LastName}"   />
+                                        <TextBlock Text=" "/>
+                                        <TextBlock VerticalAlignment="Center"   Text="{Binding Patronimic}"   />
+                                        <TextBlock Text=" "/>
+                                    </StackPanel>
+                                    <TextBlock VerticalAlignment="Center"  Grid.Row="0" Grid.Column="2" Text="{Binding Phone}" HorizontalAlignment="Center"   />
+
+                                    <Border BorderBrush="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1"/>
+
+                                    <Button Style="{StaticResource MyButton}" Grid.Row="0" Content="Загрузить" Grid.Column="4"
+                                    Click="Button_Click_1"></Button>
+
+                                </Grid>
+
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
 
         <StackPanel Grid.Row="2" >
             <Border Background="Orange" CornerRadius="5" Padding="4">

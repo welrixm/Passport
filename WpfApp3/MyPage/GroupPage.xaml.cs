@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,8 @@ namespace WpfApp3.MyPage
     /// </summary>
     public partial class GroupPage : Page
     {
+
+
         public Visitor vis { get; set; }
         public static byte[] image { get; set; }
         public GroupPage()
@@ -140,13 +143,7 @@ namespace WpfApp3.MyPage
             }
         }
 
-        private void PHONEBT_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!Char.IsDigit(e.Text, 0))
-            {
-                e.Handled = true;
-            }
-        }
+      
 
         private void OrgTb_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -171,5 +168,73 @@ namespace WpfApp3.MyPage
                 e.Handled = true;
             }
         }
+
+        private void MailTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Regex.IsMatch(MailTb.Text, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void PHONEBT_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
+             
+          
+        }
+
+        private void PHONEBT_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsNumeric(e.Text);
+        }
+        private bool IsNumeric(string value)
+        {
+            return int.TryParse(value, out int result); 
+        }
+
+        private void MailTb_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Regex.IsMatch(MailTb.Text, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void MailTb_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (MailTb.Text.EndsWith("@mail.ru"))
+            {
+                
+            }
+
+            else if (MailTb.Text.EndsWith("@gmail.com"))
+            {
+               
+            }
+            else if (MailTb.Text.EndsWith("@yandex.ru"))
+            {
+
+            }
+            else if (MailTb.Text.EndsWith("@inbox.ru"))
+            {
+
+            }
+            else if (MailTb.Text.EndsWith("@bk.ru"))
+            {
+
+            }
+            else if (MailTb.Text.EndsWith("@hotmail.com"))
+            {
+
+            }
+           
+            else
+            {
+                MessageBox.Show("Неверный адрес электронной почты. Возможное окончание почты: @yandex.ru\r\n@mail.ru\r\n@inbox.ru\r\n@bk.ru\r\n@hotmail.com\r\n@gmail.com");
+                MailTb.Text = string.Empty;
+            }
+        }
     }
+    
 }
