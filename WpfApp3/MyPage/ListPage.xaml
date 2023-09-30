@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+           
         </Grid.RowDefinitions>
         <ListView  x:Name="myListView" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding VisitorPasses}"   ScrollViewer.HorizontalScrollBarVisibility="Disabled"   d:ItemsSource="{d:SampleData ItemCount=5}" VerticalAlignment="Stretch"  >
 
