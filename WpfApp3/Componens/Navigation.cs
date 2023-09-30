@@ -11,6 +11,7 @@ namespace WpfApp3.Componens
     {
         public static List<Nav> navs = new List<Nav>();
         public static MainWindow main;
+        public static Visitor AutoUser;
         public static bool isAuth = false;
         public static void NextPage(Nav nav)
         {

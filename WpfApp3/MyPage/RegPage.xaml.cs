@@ -34,21 +34,56 @@ namespace WpfApp3.MyPage
             string namee = NameTb.Text.Trim();
                 if (login.Length > 0 && password.Length>0 && namee.Length>0)
             {
-                var useru = BdConectn.db.Visitor.Where(x => x.Name == namee && x.Email == login && x.Password == password).FirstOrDefault();
+                var useru = DBConnect.db.Visitor.Where(x => x.Name == namee && x.Email == login && x.Password == password).FirstOrDefault();
                 if (useru == null)
                 {
-                    BdConectn.db.Visitor.Add(new Visitor
+                    DBConnect.db.Visitor.Add(new Visitor
                     {
                         Email = login,
                         Password = password,
                         Name = namee,
                     });
-                    MessageBox.Show("Пользователь зарегистрирован");
-                    BdConectn.db.SaveChanges();
-                    NavigationService.Navigate(new AutoPage());
+                    if (password.Length < 8 && login.Length < 8)
+                    {
+
+                        bool symbol = false;
+                        bool number = false;
+                        bool IsAllUpper = false;
+                        for (int i = 0; i < password.Length; i++)
+                        {
+
+                            if (password[i] >= '0' && password[i] <= '9') number = true;
+                            if (password[i] == '!' || password[i] == '@' || password[i] == '#' || password[i] == '$' || password[i] == '%' || password[i] == '^') symbol = true;
+                            if (Char.IsUpper(password[i])) IsAllUpper = true;
+                        }
+
+                        if (!symbol)
+                            MessageBox.Show("Добавьте один из следующих символов: ! @ # $ % ^");
+                        else if (!number)
+                            MessageBox.Show("Добавьте хотя бы одну цифру");
+                        else if (!IsAllUpper)
+                            MessageBox.Show("Добавьте одну прописную букву");
+                        if (symbol && number && IsAllUpper)
+                        {
+                            MessageBox.Show("Пользователь зарегистрирован");
+                            DBConnect.db.SaveChanges();
+                            NavigationService.Navigate(new AutoPage());
+                        }
+                        //  MessageBox.Show("Пользователь успешно зарегестрирован!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пароль слишком короткий, требуется минимум 6 символов!");
+                    }
+                    
 
                 }
             }
+        }
+
+        private void OtmenaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.BackPage();
         }
     }
 }

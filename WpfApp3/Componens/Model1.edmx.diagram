@@ -4,21 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a32281e6529445d3b45b844680bdf857" Name="Diagram1">
-        <EntityTypeShape EntityType="prrrModel.Docimentation" Width="1.5" PointX="7.5" PointY="8" />
-        <EntityTypeShape EntityType="prrrModel.Employee" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="prrrModel.Pass" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="prrrModel.Subdivision" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="prrrModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.75" />
-        <EntityTypeShape EntityType="prrrModel.Visitor" Width="1.5" PointX="5.25" PointY="6.875" />
-        <EntityTypeShape EntityType="prrrModel.VisitorPass" Width="1.5" PointX="7.5" PointY="1.25" />
-        <EntityTypeShape EntityType="prrrModel.VisitPurpose" Width="1.5" PointX="3" PointY="5.375" />
-        <AssociationConnector Association="prrrModel.FK_Docimentation_Visitor" />
-        <AssociationConnector Association="prrrModel.FK_Employee_Subdivision" />
-        <AssociationConnector Association="prrrModel.FK_Pass_Employee" />
-        <AssociationConnector Association="prrrModel.FK_Pass_VisitPurpose" />
-        <AssociationConnector Association="prrrModel.FK_VisitorPass_Pass" />
-        <AssociationConnector Association="prrrModel.FK_VisitorPass_Visitor" />
+      <Diagram DiagramId="5b56981059ee4095a05e8ac7d2b01968" Name="Diagram1">
+        <EntityTypeShape EntityType="ApplicationModel.Document" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApplicationModel.Employee" Width="1.5" PointX="1.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApplicationModel.ExecutionStage" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApplicationModel.GoalVisit" Width="1.5" PointX="1.5" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApplicationModel.Pass" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApplicationModel.Subdivision" Width="1.5" PointX="1.5" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApplicationModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApplicationModel.Visitor" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApplicationModel.VisitorPass" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ApplicationModel.FK_Docimentation_Visitor" ManuallyRouted="false" />
+        <AssociationConnector Association="ApplicationModel.FK_Employee_Subdivision" ManuallyRouted="false" />
+        <AssociationConnector Association="ApplicationModel.FK_Pass_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ApplicationModel.FK_VisitorPass_ExecutionStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ApplicationModel.FK_Pass_GoalVisit" ManuallyRouted="false" />
+        <AssociationConnector Association="ApplicationModel.FK_VisitorPass_Pass" ManuallyRouted="false" />
+        <AssociationConnector Association="ApplicationModel.FK_VisitorPass_Visitor" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

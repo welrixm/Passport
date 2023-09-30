@@ -35,25 +35,27 @@ namespace WpfApp3.MyPage
         private void AutoBtn_Click(object sender, RoutedEventArgs e)
         {
             string login = LoginTb.Text.Trim();
-            string password = PasswordTb.Text.Trim();
+            string password = PasswordTb.Password.Trim();
             if (login.Length> 0 && password.Length>0)
             {
-                var user = BdConectn.db.Visitor.Where(x => x.Email == login && x.Password == password).FirstOrDefault();
+               
+                var user = DBConnect.db.Visitor.Where(x => x.Email == login && x.Password == password).FirstOrDefault();
                 if (user == null)
                 {
-                    MessageBox.Show("Такого пользователя нет");
+                    MessageBox.Show("Пользователя не существует");
                 }
                 else 
                 {
-                
-                Navigation.isAuth = true; 
+                    
+                Navigation.isAuth = true;
+                    Navigation.AutoUser = user;
                 Navigation.NextPage(new Nav("", new HomePage()));
               
                 }
             }
             else
             {
-                MessageBox.Show("Заполните поля");
+                MessageBox.Show("Пожалуйста, заполните поля");
             }
           //  var Userid= BdConectn.db
         }

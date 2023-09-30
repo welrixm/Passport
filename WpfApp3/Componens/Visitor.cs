@@ -17,7 +17,7 @@ namespace WpfApp3.Componens
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Visitor()
         {
-            this.Docimentation = new HashSet<Docimentation>();
+            this.Document = new HashSet<Document>();
             this.VisitorPass = new HashSet<VisitorPass>();
         }
     
@@ -31,12 +31,12 @@ namespace WpfApp3.Componens
         public string Note { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string PassportSeries { get; set; }
-        public string OassportNum { get; set; }
+        public string PassportNum { get; set; }
         public byte[] Photo { get; set; }
         public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Docimentation> Docimentation { get; set; }
+        public virtual ICollection<Document> Document { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VisitorPass> VisitorPass { get; set; }
     }

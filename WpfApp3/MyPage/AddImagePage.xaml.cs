@@ -30,7 +30,7 @@ namespace WpfApp3.MyPage
         {
             visitor = _visitor;
             InitializeComponent();
-            VisitTb.Text = visitor.LastName + visitor.Name + visitor.Patronimic;
+            VisitTb.Text = visitor.LastName ;
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -49,13 +49,13 @@ namespace WpfApp3.MyPage
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var patronid = visitor.Id;
-            BdConectn.db.Docimentation.Add(new Docimentation
+            DBConnect.db.Document.Add(new Document
             {
                 VisitorId = visitor.Id,
                 Photo = image,
             }) ;
-            BdConectn.db.SaveChanges();
-            MessageBox.Show("Файл загружен");
+            DBConnect.db.SaveChanges();
+            MessageBox.Show("Изображение добавлено");
             Close();
         }
     }

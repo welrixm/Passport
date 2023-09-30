@@ -23,11 +23,11 @@ namespace WpfApp3.Componens
         public int Id { get; set; }
         public Nullable<System.DateTime> DesiredStartDate { get; set; }
         public Nullable<System.DateTime> DesiredEndDate { get; set; }
-        public Nullable<int> VisitPurposeId { get; set; }
+        public Nullable<int> GoalVisitId { get; set; }
         public Nullable<int> EmployeeId { get; set; }
     
         public virtual Employee Employee { get; set; }
-        public virtual VisitPurpose VisitPurpose { get; set; }
+        public virtual GoalVisit GoalVisit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VisitorPass> VisitorPass { get; set; }
     }

@@ -9,19 +9,20 @@
       Title="AutoPage">
 
     <Grid>
-        <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="Логин" Margin="5"></TextBlock>
-                <TextBox Style="{StaticResource MeTextBox}" x:Name="LoginTb"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
-                <TextBlock Text="Пароль"></TextBlock>
-                <TextBox Style="{StaticResource MeTextBox}" x:Name="PasswordTb"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button x:Name="RegBtn" Content="Регистрация"  Style="{StaticResource MyButton}" Click="RegBtn_Click"></Button>
-                <Button x:Name="AutoBtn" Content="Вход"  Style="{StaticResource MyButton}" Click="AutoBtn_Click" ></Button>
+        <StackPanel   VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <TextBlock Text="Логин" Margin="5"></TextBlock>
+            <TextBox Style="{StaticResource MeTextBox}" x:Name="LoginTb"></TextBox>
+            <TextBlock Text="Пароль"></TextBlock>
+            <PasswordBox Style="{StaticResource MeTextBox2}" x:Name="PasswordTb"></PasswordBox>
+            <StackPanel Orientation="Horizontal" >
+                <Border BorderBrush="Orange" BorderThickness="3"  CornerRadius="5" Margin="10"  >
+                    <Button x:Name="RegBtn" Content="Регистрация"  Click="RegBtn_Click" Background="White"></Button>
+                </Border>
+                <Border BorderBrush="Orange" BorderThickness="3"  CornerRadius="5" Margin="10"  >
+                    <Button x:Name="AutoBtn" Content="Вход"  Background="White" Click="AutoBtn_Click" ></Button>
+                </Border>
             </StackPanel>
         </StackPanel>
     </Grid>
+    
 </Page>

@@ -13,10 +13,10 @@ namespace WpfApp3.Componens
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class prrrEntities : DbContext
+    public partial class ApplicationEntities : DbContext
     {
-        public prrrEntities()
-            : base("name=prrrEntities")
+        public ApplicationEntities()
+            : base("name=ApplicationEntities")
         {
         }
     
@@ -25,13 +25,14 @@ namespace WpfApp3.Componens
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Docimentation> Docimentation { get; set; }
+        public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<ExecutionStage> ExecutionStage { get; set; }
+        public virtual DbSet<GoalVisit> GoalVisit { get; set; }
         public virtual DbSet<Pass> Pass { get; set; }
         public virtual DbSet<Subdivision> Subdivision { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Visitor> Visitor { get; set; }
         public virtual DbSet<VisitorPass> VisitorPass { get; set; }
-        public virtual DbSet<VisitPurpose> VisitPurpose { get; set; }
     }
 }

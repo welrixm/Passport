@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\232001\source\repos\WpfApp3\WpfApp3\Componens\Model1.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\Medina\Desktop\DolgovaLast (2)\DolgovaLast\WpfApp3\Componens\Model1.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

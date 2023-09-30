@@ -18,6 +18,20 @@
                 </Setter.Value>
             </Setter>-->
         </Style>
+        <Style x:Key="MeTextBox2" TargetType="PasswordBox">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="5" />
+            <!--<Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate >
+                        <Border x:Name="border" CornerRadius="7"
+        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="BorderBrush" Value="Orange" />
             <Setter Property="BorderThickness" Value="2"/>

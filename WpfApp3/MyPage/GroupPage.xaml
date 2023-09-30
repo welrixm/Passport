@@ -16,14 +16,15 @@
             <ColumnDefinition Width="51*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="130*"/>
+            <RowDefinition Height="150*"/>
             <RowDefinition Height="197*"/>
             <RowDefinition Height="93*"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="10" Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="350" >
 
-            <Border Background="Orange" CornerRadius="5"  Width="350" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <TextBlock  Text="Информация для пропуска" Width="300"></TextBlock>
+            <Border Background="Orange" CornerRadius="5"  MinWidth="800" MinHeight="30" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" >
+                <TextBlock  Text="Информация для пропуска" Width="300" Padding="5"></TextBlock>
             </Border>
             <StackPanel Orientation="Vertical">
                 <TextBlock Text=" Срок действия заявки"/>
@@ -31,34 +32,36 @@
                     <TextBlock Text="с" Margin="5"/>
                     <DatePicker x:Name="DateNewTb"
                                 IsTodayHighlighted="False" SelectedDateFormat="Short" 
-                                AllowDrop="True" />
+                                AllowDrop="True" SelectedDateChanged="DateNewTb_SelectedDateChanged" />
 
                     <TextBlock Text="по" Margin="5"></TextBlock>
                     <DatePicker x:Name="DateEndTb"   
                                 IsTodayHighlighted="False" SelectedDateFormat="Short" 
-                                AllowDrop="True"/>
+                                AllowDrop="True" SelectedDateChanged="DateEndTb_SelectedDateChanged"/>
 
                 </StackPanel>
-                <TextBlock Text="цель посещения"></TextBlock>
-                <ComboBox x:Name="VisitPurposeCb" SelectedItem="{Binding VisitPurpose}" Margin="10"></ComboBox>
+                <TextBlock Text="Цель посещения"></TextBlock>
+                <ComboBox x:Name="VisitPurposeCb" SelectedItem="{Binding GoalVisit}" Margin="10"></ComboBox>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Margin="10" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Orientation="Vertical" Width="350">
-            <Border Background="Orange" CornerRadius="5" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center"  >
-                <TextBlock  Text="Принимающая сторона"  HorizontalAlignment="Center"/>
+            <Border Background="Orange" CornerRadius="5"  MinWidth="800" MinHeight="30" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" >
+                <TextBlock  Text="Принимающая сторона" Padding="5" HorizontalAlignment="Center"/>
             </Border>
             <TextBlock Text="Подразделение" Padding="5"/>
-            <ComboBox  x:Name="SubdivisionCb" SelectedItem="{Binding Subdivision}" Padding="5" Width="300" Height="20" SelectionChanged="SubdivisionCb_SelectionChanged" />
+            <ComboBox  x:Name="SubdivisionCb" SelectedItem="{Binding Subdivision}" Padding="5" Width="300" Height="30" SelectionChanged="SubdivisionCb_SelectionChanged" />
             <TextBlock Text="ФИО" Padding="5"/>
-            <TextBox x:Name="NSPTb" Padding="5" Height="20" Width="300"/>
+            <TextBox x:Name="NSPTb" Padding="5" Height="30" Width="300" />
         </StackPanel>
 
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
-            <Border Background="Orange" CornerRadius="5"  VerticalAlignment="Center">
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" >
+            <Border Background="Orange" CornerRadius="5"  MinWidth="800" MinHeight="30" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" >
                 <StackPanel HorizontalAlignment="Center" >
-                    <TextBlock  Text="Информация о посетителе" ></TextBlock>
+                    <TextBlock  Text="Информация о посетителе" Padding="5"></TextBlock>
                 </StackPanel>
             </Border>
             <Grid>
@@ -106,7 +109,14 @@
 
                 <TextBlock Text="Дата рождения" Padding="5" Grid.Row="2" Grid.Column="2" />
 
-                <DatePicker x:Name="DateTb" Grid.Row="2" Grid.Column="3" Padding="4"/>
+                <!--<DatePicker x:Name="DateTb" Grid.Row="2" Grid.Column="3" Padding="4"/>-->
+                
+                    <DatePicker x:Name="DateTb" SelectedDateChanged="DateTb_SelectedDateChanged"  Width="180" Margin="-1"  Grid.Row="2" Grid.Column="3" Padding="5"></DatePicker>
+                    <!--<DatePicker x:Name="DateTb"  Grid.Row="2" Grid.Column="3" 
+                            IsTodayHighlighted="False" SelectedDateFormat="Short" 
+                            AllowDrop="True" DisplayDateEnd="2007-04-17" FirstDayOfWeek="Monday"/>-->
+
+             
 
                 <TextBlock Text="Серия" Padding="5" Grid.Row="3" Grid.Column="2" />
                 <TextBox x:Name="CerTb" Grid.Row="3" Grid.Column="3" Margin="9,5"  MaxLength="4"   Height="Auto" Width="Auto" PreviewTextInput="CerTb_PreviewTextInput"/>
@@ -116,32 +126,40 @@
                          PreviewTextInput="NumTb_PreviewTextInput"/>
 
                 <Image x:Name="ImageVisitor" Margin="5" Width="120" Height="120" Grid.Column="4" Grid.RowSpan="4"></Image>
-                <Button x:Name="AddBtn" Content="Добавить изображение"
-                        Grid.Column="4" Grid.Row="4"  Width="150" Style="{StaticResource MyButton}" Click="AddBtn_Click"/>
+                <Border BorderBrush="Orange" BorderThickness="3"  CornerRadius="5"  Grid.Column="4" Grid.Row="4"  Width="150" Margin="5" >
+                    <Button x:Name="AddBtn" Content="Добавить изображение" Background="White"
+                        Click="AddBtn_Click"/>
+                </Border>
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Row="2">
-            <Border Background="Orange" CornerRadius="5" Padding="4">
-                <TextBlock  Text="Прикрепляемые документы" Width="300"></TextBlock>
+            <Border Background="Orange" CornerRadius="5"  MinWidth="400" MinHeight="30" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" >
+                <TextBlock  Text="Прикрепляемые документы" Width="300" Padding="5"></TextBlock>
             </Border>
-            <Button 
-              Margin="10" 
-                Height="20" Width="130" HorizontalAlignment="Left" IsEnabled="False"
+            <Border BorderBrush="Orange" BorderThickness="3"  CornerRadius="5" Height="30" Width="150" Margin="10" >
+                <Button Width="150"
+              Background="White"
+                 HorizontalAlignment="Left" Click="Button_Click_1"
                >
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image  Source="C:\Users\232001\source\repos\WpfApp3\WpfApp3\Images\e2b5789c-237d-4da1-a83a-0b8b34478ae2.jpg"/>
-                        <TextBlock Text="Прикрепить файл"/>
-                    </StackPanel>
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image  Source="/Images/User.jpg" />
+                            <TextBlock Text="Прикрепить файл"/>
+                        </StackPanel>
 
-                </Button.Content>
-            </Button>
-
+                    </Button.Content>
+                </Button>
+            </Border>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,21,10,20" HorizontalAlignment="Right" VerticalAlignment="Center" Height="52" Width="240">
-            <Button x:Name="ClearBtn" Content="Очистить форму" Height="20" Width="100"  Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" />
-            <Button Style="{StaticResource MyButton}" Height="22"  Width="110" Content="Оформиь заявку" Margin="15" Click="Button_Click"></Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,21,70,30" HorizontalAlignment="Right" VerticalAlignment="Center" Height="52" Width="240">
+            <Border BorderBrush="Orange" BorderThickness="3"  CornerRadius="5" Height="30" Width="100" >
+                <Button x:Name="ClearBtn" Content="Очистить форму" Background="White" Click="ClearBtn_Click"  Foreground="Black" />
+            </Border>
+            <Border BorderBrush="Orange" BorderThickness="3"  CornerRadius="5" Height="30"  Width="110" >
+                <Button Background="White"  Content="Оформить заявку"  Click="Button_Click"></Button>
+            </Border>
         </StackPanel>
     </Grid>
 </Page>

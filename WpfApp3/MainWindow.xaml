@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600"  Width="864" ResizeMode="NoResize">
+        Title="Запись на пропуски" Height="600"  Width="864" ResizeMode="NoResize">
     <Grid OpacityMask="#FFFD2525">
         <Grid.RowDefinitions>
             <RowDefinition Height="51*"/>
@@ -13,16 +13,16 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
-            <Button Grid.Row="0" 
-               Content="Назад"  Style="{StaticResource MyButton}" Height="25"
-                x:Name="ExitBtn" Click="ExitBtn_Click"/>
+            <Button Grid.Row="0" Style="{StaticResource MyButton}"
+               Content="Назад"   Height="25"
+                x:Name="ExitBtn" Click="ExitBtn_Click" Margin="10"/>
             <Button   Content="Выход"
-             x:Name="BackBtn"    Style="{StaticResource MyButton}" Height="25" Click="Button_Click"/>
+             x:Name="BackBtn"  Style="{StaticResource MyButton}"   Height="25" Click="Button_Click"/>
 
         </StackPanel>
 
-        <Image Style="{StaticResource Logo}" Source="C:\Users\232001\source\repos\WpfApp3\WpfApp3\Images\e2b5789c-237d-4da1-a83a-0b8b34478ae2.jpg"></Image>
-        <TextBlock Grid.Row="0" x:Name="Mytitle" HorizontalAlignment="Center" VerticalAlignment="Center">ssdfsdfs</TextBlock>
+        <Image Style="{StaticResource Logo}" Source="/Resources/logo.jpg"></Image>
+        <TextBlock Grid.Row="0" x:Name="Mytitle" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">Добро пожаловать</TextBlock>
         <Frame Grid.Row="1" x:Name="MyFrame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>
